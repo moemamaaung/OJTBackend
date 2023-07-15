@@ -72,11 +72,12 @@ public class User implements UserDetails{
 	
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
+	private String programName;
 	
+
 	@ManyToOne
-	//@JsonIgnore
-	private Program program;
-	
+	  //@JsonIgnore
+	 private Program program;
 	
 	
 	

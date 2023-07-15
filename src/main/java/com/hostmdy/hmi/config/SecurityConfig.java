@@ -27,7 +27,8 @@ public class SecurityConfig {
 	
 	private static final String[] PUBLIC_MATCHERS = {
 			"/api/user/**","/api/role/**","/api/academicyear/**","/api/program/**","/api/time/**",
-			"/api/course/**","/api/mark/**","/api/exam/**","/api/applicant/**","/api/edu/**","/api/exp/**"
+			"/api/course/**","/api/mark/**","/api/exam/**","/api/applicant/**","/api/edu/**","/api/exp/**",
+			"/api/email/**","/api/confirm**","/api/lecturer/**"
 	};
 	
 	@Bean

@@ -16,14 +16,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hostmdy.hmi.config.JwtTokenProvider;
 import com.hostmdy.hmi.domain.AcademicYear;
+import com.hostmdy.hmi.domain.Course;
 import com.hostmdy.hmi.domain.Program;
 import com.hostmdy.hmi.domain.User;
 import com.hostmdy.hmi.domain.security.Role;
@@ -124,7 +127,7 @@ public class UserController {
 	     Set<UserRoles> userRoles = new HashSet<>();
 	     userRoles.add(new UserRoles(user, role1));
 	   
-	     return new ResponseEntity<User>(userService.createUser(user, userRoles, programId), HttpStatus.CREATED);
+	     return new ResponseEntity<User>(userService.createUser(user, userRoles,programId), HttpStatus.CREATED);
 		
 	}
 	
@@ -141,16 +144,26 @@ public class UserController {
 		
 	}
 	
-	@PostMapping("/update")
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		return new ResponseEntity<User> (userService.saveUser(user),HttpStatus.CREATED);
+	@PatchMapping("/update/{programId}")
+	public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable Long programId) {
+		User updatedUser = userService.updateUser(user, programId);
+		System.out.println("Program Id"+programId);
+		return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
 		
 	}
+	
 	@DeleteMapping("id/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable Long id){
 		userService.deleteById(id);
 		return new ResponseEntity<Number>(id,HttpStatus.OK);
 		
+	}
+	
+	@PatchMapping("/updatePassword/{programId}")
+	public ResponseEntity<User> updatePassword(@RequestBody User user,@PathVariable Long programId) {
+
+		return new ResponseEntity<User>(userService.updatePassword(user, programId), HttpStatus.OK);
+		 
 	}
 
 }

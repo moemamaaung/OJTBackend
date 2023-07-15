@@ -36,8 +36,8 @@ public class ApplicantController {
 		this.mapErrorService = mapErrorService;
 	}
 	
-	@PostMapping("/create")
-	public ResponseEntity<?> createApplicant(@RequestBody Applicant applicant,BindingResult result){
+	@PostMapping("/create/{programId}")
+	public ResponseEntity<?> createApplicant(@RequestBody Applicant applicant,BindingResult result,@PathVariable Long programId){
 	
 		ResponseEntity<?> responseErrorObject = mapErrorService.validate(result);
 		
@@ -47,7 +47,8 @@ public class ApplicantController {
 		}
 		
 
-		Applicant createdApplicant= appService.saveorUpdate(applicant);
+		applicant.setStatus("Pending");
+		Applicant createdApplicant= appService.saveorUpdate(applicant,programId);
 		
 		return new ResponseEntity<Applicant>(createdApplicant,HttpStatus.CREATED);
 	

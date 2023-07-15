@@ -83,15 +83,23 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User updateUser(User user) {
+	public User updateUser(User user,Long programId) {
 		// TODO Auto-generated method stub
+		Optional<Program> programOpt = programRepository.findById(programId);
+		if(programOpt.isPresent()) {
+			Program program = programOpt.get();
+			
+			program.getUsers().add(user);
+			user.setProgram(program);
+	
+		}
 		return userRepo.save(user);
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-Optional<User> userOpt = userRepo.findById(id);
+		
+		Optional<User> userOpt = userRepo.findById(id);
 		
 		userRepo.deleteById(userOpt.get().getId());
 	}
@@ -123,8 +131,26 @@ Optional<User> userOpt = userRepo.findById(id);
 		
 		user.getUserRoles().addAll(userRoles);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+//		user.setPassword(user.getPassword());
 	
 		return saveUser(user);
+	}
+
+
+
+	@Override
+	public User updatePassword(User user,Long programId) {
+		Optional<Program> programOpt = programRepository.findById(programId);
+		if(programOpt.isPresent()) {
+			Program program = programOpt.get();
+			
+			program.getUsers().add(user);
+			user.setProgram(program);
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+	
+		}
+		 
+		 return saveUser(user);
 	}
 
 	

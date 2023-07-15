@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.hostmdy.hmi.domain.Confirm;
-import com.hostmdy.hmi.service.ApplicantService;
+
 import com.hostmdy.hmi.service.ConfirmService;
 import com.hostmdy.hmi.service.MapValidationErrorService;
 
@@ -23,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/confirm")
+@RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
 public class ConfirmController {
 	

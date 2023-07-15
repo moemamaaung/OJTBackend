@@ -25,6 +25,7 @@ public class Mark {
 	private Integer subject5Score;
 	private Integer subject6Score;
 	private String fullname;
+	private String username;
 	
 	@ManyToOne
 	@JoinColumn(name = "courseId")

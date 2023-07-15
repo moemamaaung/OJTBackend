@@ -12,7 +12,7 @@ public interface MarkService {
 	
 	Mark create(Mark mark,Long courseId,Long examId);
 	
-	Mark updateMark(Mark mark,Long courseId,Long examId);
+	Mark updateMark(Mark mark,Long courseId);
 	
 	Optional<Mark> findById(Long id);
 	

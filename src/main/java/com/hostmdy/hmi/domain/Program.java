@@ -18,11 +18,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
-@Data
+@Getter @Setter
 @NoArgsConstructor
 public class Program {
 
@@ -37,11 +39,15 @@ public class Program {
 
 	@OneToMany(mappedBy = "program")
 	@JsonIgnore
-	private Set<User> users = new HashSet<>();
+	private Set<Applicant> applicants = new HashSet<>();
 	
 	@OneToOne(mappedBy = "program")
 	@JsonIgnore
 	private Time time;
+	
+	@OneToMany(mappedBy = "program")
+	 @JsonIgnore
+	 private Set<User> users = new HashSet<>();
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	private AcademicYear academicyear;

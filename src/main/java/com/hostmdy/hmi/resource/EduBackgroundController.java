@@ -63,7 +63,7 @@ public class EduBackgroundController {
 		EduBackground createdEduBackground = eduService.saveorUpdate(eduBackground);
 		applicant.setEdu(createdEduBackground);
 		//applicantService.saveorUpdate(applicant);
-		Applicant createdApplicant = applicantService.saveorUpdate(applicant);
+		Applicant createdApplicant = applicantService.saveorUpdate(applicant, appId);
 		
 		return new ResponseEntity<Applicant>(createdApplicant,HttpStatus.CREATED);	
 	}

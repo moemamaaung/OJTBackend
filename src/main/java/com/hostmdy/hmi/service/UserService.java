@@ -14,11 +14,11 @@ public interface UserService {
 	
 	User saveUser(User user);
 	
-	User createUser(User user,Set<UserRoles> userRoles);
-	
 	User createUser(User user,Set<UserRoles> userRoles,Long programId);
 	
-	User updateUser(User user);
+	User createUser(User user,Set<UserRoles> userRoles);
+	
+	User updateUser(User user,Long programId);
 	
 	Optional<User> findById(Long id);
 	
@@ -27,6 +27,8 @@ public interface UserService {
 	Optional<Program> findByProgramName(String programName);
 	
 	List<User> findAll();
+	
+	User updatePassword(User user,Long programId);
 	
 
 }

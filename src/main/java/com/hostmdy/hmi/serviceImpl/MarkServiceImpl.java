@@ -52,20 +52,20 @@ public class MarkServiceImpl implements MarkService{
 	}
 
 	@Override
-	public Mark updateMark(Mark mark,Long courseId,Long examId ) {
+	public Mark updateMark(Mark mark,Long courseId ) {
 		// TODO Auto-generated method stub
 		 Optional<Course> courseOpt = courseRepository.findById(courseId);
-		 Optional<Exam> examOpt = examRepository.findById(examId);
+		// Optional<Exam> examOpt = examRepository.findById(examId);
 		
-		if(courseOpt.isPresent() && examOpt.isPresent()) {
+		if(courseOpt.isPresent()) {
 			Course course = courseOpt.get();
-			Exam exam = examOpt.get();
+//			Exam exam = examOpt.get();
 			
 			course.getMarks().add(mark);
-			exam.getMarks().add(mark);
+			//exam.getMarks().add(mark);
 			
 			mark.setCourse(course);
-			mark.setExam(exam);
+			//mark.setExam(exam);
 
 			return markRepository.save(mark);
 			

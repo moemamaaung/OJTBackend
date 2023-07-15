@@ -60,7 +60,7 @@ public class ExperienceController {
 		Experience createdExperience = experienceService.saveorUpdate(experience);
 		applicant.setExp(createdExperience);
 		
-		Applicant createdApplicant = appService.saveorUpdate(applicant);
+		Applicant createdApplicant = appService.saveorUpdate(applicant, appId);
 		return new ResponseEntity<Applicant>(createdApplicant,HttpStatus.CREATED);
 		
 	}

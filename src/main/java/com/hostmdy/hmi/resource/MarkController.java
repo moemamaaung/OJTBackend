@@ -42,9 +42,9 @@ public class MarkController {
 		return new ResponseEntity<Mark>(savedMark,HttpStatus.CREATED);
 	}
 	
-	@PatchMapping("/update/{courseId}/{examId}")
-	public ResponseEntity<?> updateMark(@RequestBody Mark mark,@PathVariable Long courseId,@PathVariable Long examId){
-		Mark updatedMark = markService.updateMark(mark,courseId,examId);
+	@PatchMapping("/update/{courseId}")
+	public ResponseEntity<?> updateMark(@RequestBody Mark mark,@PathVariable Long courseId){
+		Mark updatedMark = markService.updateMark(mark,courseId);
 		
 		return new ResponseEntity<Mark>(updatedMark, HttpStatus.OK);
 		

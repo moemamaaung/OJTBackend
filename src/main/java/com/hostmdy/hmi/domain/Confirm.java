@@ -19,25 +19,25 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name="Confirm")
 public class Confirm {
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
+	  private Long Id;
+	  
+	  @NotBlank(message = "Your name should not be blank")
+	  private String fullname;
+	  
+	  @NotBlank(message = "Email should not be blank")
+	  private String username;
+	  
+	  @NotBlank(message = "Phno should not be blank")
+	  private String phno;
+	  
+	  private String street;
+	  private String township;
+	  private String city;
+	  
+	  @Enumerated(EnumType.STRING)
+	  private Gender gender;
 	
-	@NotBlank(message = "Your name should not be blank")
-	private String name;
-	
-	@NotBlank(message = "Email should not be blank")
-	private String email;
-	
-	@NotBlank(message = "Phno should not be blank")
-	private String phno;
-	
-	private String street;
-	private String township;
-	private String city;
-	
-	@Enumerated(EnumType.STRING)
-	private Gender gender;
 
 }
