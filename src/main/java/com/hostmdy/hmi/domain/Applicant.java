@@ -43,9 +43,10 @@ public class Applicant {
 	  private String township;
 	  private String city;
 	  
-	  private Boolean confirm;
+//	  private Boolean confirm;
 	  
-	  private String status;
+	  @Enumerated(EnumType.STRING)
+	  private ApplicationConfirm status;
 	  
 	  @Enumerated(EnumType.STRING)
 	  private Gender gender;
@@ -56,11 +57,11 @@ public class Applicant {
 	  @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	  private Experience exp;
 	  
-	  @PrePersist
-	  public void beforeObjectCreate()
-	  {
-	    this.confirm=false;
-	  }
+//	  @PrePersist
+//	  public void beforeObjectCreate()
+//	  {
+//	    this.confirm=false;
+//	  }
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	//@JsonIgnore

@@ -11,13 +11,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.hostmdy.hmi.domain.Applicant;
-
+import com.hostmdy.hmi.domain.ApplicationConfirm;
 import com.hostmdy.hmi.service.ApplicantService;
 import com.hostmdy.hmi.service.MapValidationErrorService;
 
@@ -46,8 +47,7 @@ public class ApplicantController {
 			return responseErrorObject;
 		}
 		
-
-		applicant.setStatus("Pending");
+		applicant.setStatus(ApplicationConfirm.Confirm);
 		Applicant createdApplicant= appService.saveorUpdate(applicant,programId);
 		
 		return new ResponseEntity<Applicant>(createdApplicant,HttpStatus.CREATED);
@@ -69,6 +69,23 @@ public class ApplicantController {
 		return new ResponseEntity<Applicant>(appOptional.get(),HttpStatus.OK);
 		
 	}
+	@PatchMapping("/update/{programId}/{eduId}/{expId}")
+	  public ResponseEntity<?> updateApplicant(@RequestBody Applicant applicant,BindingResult result,@PathVariable Long programId,@PathVariable Long eduId,@PathVariable Long expId){
+	  
+	    ResponseEntity<?> responseErrorObject = mapErrorService.validate(result);
+	    
+
+	    if(responseErrorObject != null) {
+	      return responseErrorObject;
+	    }
+	    
+
+	    Applicant updateApplicant= appService.update(applicant, programId, eduId, expId);
+	    
+	    
+	    return new ResponseEntity<Applicant>(updateApplicant,HttpStatus.CREATED);
+	  
+	  }
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable Long id){

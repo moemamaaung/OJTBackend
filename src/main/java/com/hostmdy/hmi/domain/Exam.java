@@ -22,9 +22,9 @@ public class Exam {
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id;
 	private String examType;
-	
-	@OneToMany(mappedBy = "exam")
-	@JsonIgnore
-	private List<Mark> marks;
+//	
+//	@OneToMany(mappedBy = "exam")
+//	@JsonIgnore
+//	private List<Mark> marks;
 
 }

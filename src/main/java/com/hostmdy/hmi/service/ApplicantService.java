@@ -9,6 +9,7 @@ import com.hostmdy.hmi.domain.Applicant;
 public interface ApplicantService {
 	
 	Applicant saveorUpdate(Applicant applicant,Long programId);
+	Applicant update(Applicant applicant,Long programId,Long eduId,Long expId);
 	
 	List<Applicant> findAll();
 	

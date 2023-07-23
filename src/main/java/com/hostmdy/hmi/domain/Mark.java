@@ -32,7 +32,7 @@ public class Mark {
 	//@JsonIgnore
 	private Course course;
 	
-	@ManyToOne
-	@JoinColumn(name = "examId")
-	private Exam exam;
+//	@ManyToOne
+//	@JoinColumn(name = "examId")
+//	private Exam exam;
 }

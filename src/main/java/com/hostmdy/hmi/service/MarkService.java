@@ -10,7 +10,7 @@ public interface MarkService {
 	
 	List<Mark> findAll();
 	
-	Mark create(Mark mark,Long courseId,Long examId);
+	Mark create(Mark mark,Long courseId);
 	
 	Mark updateMark(Mark mark,Long courseId);
 	

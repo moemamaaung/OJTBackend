@@ -35,10 +35,10 @@ public class MarkController {
 		
 	}
 	
-	@PostMapping("/create/{courseId}/{examId}")
-	public ResponseEntity<?> createMark(@RequestBody Mark mark,@PathVariable Long courseId,@PathVariable Long examId){
+	@PostMapping("/create/{courseId}")
+	public ResponseEntity<?> createMark(@RequestBody Mark mark,@PathVariable Long courseId){
 		
-		Mark savedMark = markService.create(mark, courseId, examId);
+		Mark savedMark = markService.create(mark, courseId);
 		return new ResponseEntity<Mark>(savedMark,HttpStatus.CREATED);
 	}
 	
